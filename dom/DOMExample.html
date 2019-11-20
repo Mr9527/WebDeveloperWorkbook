@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="text">
+      There are lots of different kinds of fruit - there are over 500 varieties
+      of banna alone. By the time we add the countless types of
+      apples,oranges,and other well-known fruit,we are faced with thousands of
+      choices. One of the most interesting aspects of fruit is the variety
+      available in each country.I live near <span id="london">London</span>, in
+      an area which is <span id="known">known</span> for its
+      <span id="apples">apples</span>.
+    </p>
+    <script>
+      document.writeln("<pre>URL:" + document.URL);
+      var elements = document.getElementsByTagName("p");
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        document.writeln("Element ID :" + element.id);
+        element.style.border = "medium double black";
+        element.style.padding = "4px";
+      }
+      document.writeln("characterSet :" + document.characterSet);
+      document.writeln("charset :" + document.charset);
+      document.writeln("compatMode :" + document.compatMode);
+      document.writeln("defaultCharset :" + document.defaultCharset);
+      document.writeln("dir:" + document.dir);
+      document.writeln("referrer:" + document.referrer);
+      document.writeln("title: " + document.title);
+      document.writeln("location:" + document.location);
+    </script>
+  </body>
+</html>

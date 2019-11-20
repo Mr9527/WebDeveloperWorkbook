@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <span
+        v-bind:title="message"
+        v-on:click="heihei"
+        v-bind:draggable="isDraggable"
+      >
+        {{prompt.replace('_','')}}
+      </span>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          prompt:
+            "Mustache 不能作用在_HTML属性上，遇到这种情况应该使用 v-bind 命令",
+          message: "页面加载与" + new Date().toLocaleString(),
+          isDraggable: true
+        },
+        methods: {
+          heihei: function() {
+            this.message = "页面修改与" + new Date().toLocaleString();
+          }
+        },
+        beforeCreate() {
+          console.log("beoreCrate: 初始化事件&生命周期");
+        },
+        created: function() {
+          console.log("created：数据初始化完毕，开始创建布局");
+        },
+        beforeMount() {
+          console.log(
+            "mount: 将 template 渲染完毕，准备创建 'vm.$el' 并用其替换 'el' "
+          );
+        },
+        mounted: function() {
+          console.log("挂载完毕");
+        },
+        beforeUpdate() {
+          console.log("虚拟 DOM 重新渲染并应用更新之前");
+        },
+        updated: function() {
+          console.log("updated");
+        },
+        beforeDestroy() {
+          console.log("解除绑定销毁子组件以及事件监听器之前");
+        },
+        destroyed: function() {
+          console.log("destroyed");
+        }
+      });
+    </script>
+  </body>
+</html>

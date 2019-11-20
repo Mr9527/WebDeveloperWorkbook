@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="example">
+      <p>Original message: "{{message}}"</p>
+      <p>method reversed message :"{{computedreversedMessage}}"</p>
+      <span @click="changed"
+        >Computed reversed message :"{{reversedMessage()}}"</span
+      >
+      <p>- {{sayHello}}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#example",
+        data() {
+          return {
+            message: "Hello",
+            sayHello: ""
+          };
+        },
+        methods: {
+          changed: function() {
+            this.message = "Hi ";
+          }
+        },
+        // 对于复杂的计算逻辑，应该使用 computed
+        // computed 的属性值默认值提供了 get 方法，我们嗯也可以你自己设置 seter
+        computed: {
+          computedreversedMessage: function() {
+            return this.message
+              .split("")
+              .reverse()
+              .join("");
+          },
+          name:{
+              get:function(){
+                return this.name||''
+              },
+              set:function(newValue){
+                this.name=newValue;
+              }
+          }
+        },
+        methods: {
+          reversedMessage() {
+            return this.message
+              .split("")
+              .reverse()
+              .join("");
+          },
+          changed: function() {
+            this.message = "Hi ";
+          }
+        },
+        watch: {
+            // 如果 'message' 发生改变，这个函数就会运行
+            // 计算属性在大多数情况下都适用，但是当需要数据变化时执行异步操作和开销较大的操作室，watch 则更适合
+          message: function() {
+            this.sayHello = this.message + " Joke";
+          }
+        }
+        // methods 和 computed 虽然表现形式是一样的，不同时计算属性是基于它们的响应式依赖进行缓存
+        // 这就意味着只要 message 的值没有变，多次访问 reversedMessage 计算属性就会立刻返回之前的计算结果
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #box {
+        margin-top: 100px;
+        width: 100px;
+        height: 100px;
+        background-color: lightgreen;
+        box-shadow: 10px 5px 20px 30px grey, 10px 5px 20px 30px red;
+      }
+      #outlineBox {
+        width: 200px;
+        height: 200px;
+        margin-top: 200px;
+        outline: thick solid red;
+        overflow: auto;
+        visibility: initial; /* collapse 元素不可见，且不占据空间   hidden  元素不可见但是在页面布局中占据空间  visible 元素可见
+                               对于非表格元素或者不支持这个特性的元素，为 dispaly 属性设置值为 none 值可以达到相同的效果                             
+                              */
+      }
+      p.toggle {
+        float: left;
+        border: medium double black;
+        width: 40%;
+        margin: 2px;
+        padding: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <div id="outlineBox">
+      <p>
+        there are lots of different kinds of fruit - there are over 500
+        varieties of banana alone. By the time we add the countless types of
+        apples,oranges,and other well-know fruit,we are faced with thousands of
+        choices
+      </p>
+    </div>
+
+    <p class="toggle">
+      There are lots of different kinds of fruit - there are over 500 varieties
+      of banana alone. By the time we add the countless types of apples,
+      oranges, and other well-known
+    </p>
+    <p class="toggle">
+      One of the most interesting aspects of fruit is the variety available in
+      each country. I live near Lodon, in an area which is known for apples.
+    </p>
+    <p>
+      When travelling in Asia,I was struck by how many different kinds of banana
+      were avilable -many of which had unique flavours and which were only
+      avaiable within a small region
+    </p>
+    <p>
+      <button>Left</button>
+      <button>Right</button>
+      <button>None</button>
+    </p>
+    <script>
+      var buttons = document.getElementsByTagName("BUTTON");
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function(e) {
+          var toggleElement = document.getElementsByClassName("toggle");
+          for (let j = 0; j < toggleElement.length; j++) {
+            const element = toggleElement[j];
+            element.style.cssFloat = e.target.innerHTML;
+          }
+        };
+      }
+    </script>
+    <datalist id="boxTypeList">
+      <option value="inline"
+        >设置盒模型为行内元素，设置该属性会忽略元素的 width height 与 margin
+        属性</option
+      >
+      <option value="block"
+        >设置元素的盒模型为段落，元素之间会自动换行 p
+        元素默认就拥有这种属性</option
+      >
+      <option value="inline-block"
+        >行内-块级元素——盒子整体作为行内元素显示，但是 width height margin
+        这样的属性仍然可以应用到盒子上</option
+      >
+      <option value="run-in"
+        >run-in
+        类型的盒子具体表现类型取决于周围元素。如果插入的相邻元素是一个块级元素，那么它就会变为行内元素。如果相邻的不是块级元素，那么就作为块级元素处理</option
+      >
+      <option value="none">元素在页面布局中不占有任何空间</option>
+    </datalist>
+  </body>
+</html>

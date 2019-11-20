@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .fontStyle {
+        color: white;
+      }
+      .borderStyle {
+        border: medium solid red;
+      }
+      .backgroundStyle {
+        padding: 5px;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p
+        class="fontStyle"
+        v-bind:class="{borderStyle:isSettingBorderStyle,backgroundStyle:isSettingBackground}"
+      >
+        我们可以传递给 v-bind:class 一个对象、数组 来动态的切换 class
+        且这种方法可以和传统的 class="" 并存
+      </p>
+      <p v-bind:style="styleObject">
+        我们也可以通过 v-bind:style
+        直接给当前的组件设置样式，它可以接收一个对象式的 CSS
+        声明字符串，数组对象以及对象,且当 v-bind:style 使用需要添加浏览器引擎前缀的 CSS 属性时，会自动侦测并添加
+      </p>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            isSettingBorderStyle: true,
+            isSettingBackground: true,
+            styleObject: {
+              color: "red",
+              fontSize: "13px"
+            }
+          };
+        }
+      });
+    </script>
+  </body>
+</html>

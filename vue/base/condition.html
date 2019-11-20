@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2 v-if="type===1">
+        v-if
+        是'真正'的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建
+      </h2>
+      <h2 v-else-if="type===2">在 vue 2.3.0 以上的版本还支持 v-else-if</h2>
+      <h2 v-else>
+        v-if
+        也是惰性的，如果初始渲染条件为假，则什么都不做直到条件为真的时候才开始渲染
+      </h2>
+      <button @click="siwtch">siwtch type</button>
+
+      <h2 v-show="type===1">
+        v-show 也可以根据条件展示，但不同的是 v-show 元素始终会被渲染并保留在
+        DOM 中，它只是简单的切换了元素的 `display` 属性
+      </h2>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            type: 1
+          };
+        },
+        methods: {
+          siwtch: function() {
+            if (this.type >= 3) {
+              this.type = 1;
+            } else {
+              this.type += 1;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

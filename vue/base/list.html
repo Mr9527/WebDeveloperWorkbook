@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>列表赋值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <ul id="v-for-object" class="demo">
+      <li v-for="value in object">
+        {{ value }}
+      </li>
+      <li v-for="(value, name) in object">
+        {{ name }}: {{ value }}
+      </li>
+      <li v-for="(value,index) in items">
+        {{index}}: {{ value.message }}
+      </li>
+    </ul>
+    <p>
+      我们想要显示一个数组经过排序或过滤过的版本，且不想改变原始数据。在这种情况下你可以创建一个方法或则计算属性来达到这个目的
+    </p>
+    <ul id="v-for-filter">
+      <li v-for="value in even(items)"></li>
+    </ul>
+    <script>
+      new Vue({
+        el: "#v-for-object",
+        data: {
+          object: {
+            title: "How to do lists in Vue",
+            author: "Jane Doe",
+            publishedAt: "2016-04-10"
+          },
+          items: [{ message: "Foo" }, { message: "Bar" }]
+        }
+      });
+      new Vue({
+        el: "#v-for-filter",
+        data: {
+          items: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        },
+        methods: {
+          filterArray: function(array) {
+            return array.filter(function(number) {
+              return number % 2 === 0;
+            });
+          }
+        },
+        computed: {
+          filterComputeArray: function() {
+            return this.items.filter(function(number) {
+              return number % 2 === 0;
+            });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="textblock" dir="ltr" lang="en-US">
+      There are lots of different kinds of fruit -there are over 500 varieties
+      of
+      <span id="banana"> banana </span> alone. Byte The time we add the
+      countless type of <span id="apple">apple</span>,
+      <span id="orange">orange</span>,and other well-know fruit, we are faced
+      with thousands of choices.
+    </p>
+    <p>
+      One of the most interesting aspects of fruit is the variety available in
+      each country. I live near London, in an area which is known for it apples
+    </p>
+    <script>
+      var elements = document.getElementsByTagName("p");
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        element.onmouseover = handleMouseOver;
+        element.onmouseout = handleMouseOut;
+      }
+      function handleMouseOver(e) {
+        e.target.style.background = "grey";
+        e.target.style.color = "black";
+      }
+      function handleMouseOut(e) {
+        e.target.style.removeProperty("color");
+        e.target.style.removeProperty("background");
+      }
+    </script>
+  </body>
+</html>

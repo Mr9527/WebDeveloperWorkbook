@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      /* * 匹配文档中所有的元素 */
+      * {
+        background: white;
+      }
+
+      /* 指定元素类型为选择器可以选取一个文档中该元素的所有实例 */
+      a {
+        border: thin black solid;
+        padding: 4px;
+      }
+
+      /* 
+      类选择器 
+      指定所有使用class=class1 的元素  .class1{} 或 *.class{}
+      指定单一元素class=class1 的元素  a.class1{} 或 p.class1{}
+      指定多个有多个类的元素 class=class1 class2   .class1.class2{} 或 span.class1.class2{}
+      */
+      .class1 {
+        font-size: 1em;
+      }
+      a.class1 {
+        font-size: 2em;
+      }
+      p.class1.class2 {
+        font-size: 3em;
+      }
+
+      /* 
+      ID 选择器
+      根据全局属性 id 的值选择元素 #<id值>｛｝
+      HTML 文档中元素的 id 属性值必须唯一。这意味着使用 ID 选择器，查找的必定是单个元素。
+      但 ID 选择器还提供了<元素类型>.#<id值>，这种只有跟其他选择器组合使用，才能派上用场 
+       */
+      /* TODO */
+      #w3canchor {
+        padding: 4px;
+      }
+
+      /* 
+       属性选择器
+       [条件]或<元素类型>[条件]
+       [attr="val"] 拥有属性 "attr" 且属性值为 val
+        [attr^="val"] 拥有属性 "attr" 且属性值以 val 开头
+         [attr$="val"] 拥有属性 "attr" 且属性值为 val 结尾
+          [attr*="val"] 拥有属性 "attr" 且属性值为包含 val
+           [attr~="val"] 拥有属性 "attr" 且拥有多个属性值，其中有属性值为 val
+             [attr|="val"] 拥有属性 "attr" 属性值为连字符分割的多个值，其中有属性值为 val
+        */
+      a[href] {
+        color: black;
+      }
+      [value^="n"] {
+        color: blue;
+      }
+      input[value$="e"] {
+        font-size: 1em;
+      }
+      [class~="class1"] {
+        background: red;
+      }
+      [lang|="en"] {
+        padding: 4px;
+      }
+
+      /* 
+      复合选择器
+      <选择器>.<选择器>.<选择器>
+      找到所有选择器并集
+       */
+      a,
+      [href="https://www.baidu.com/"] {
+        padding: 4px;
+      }
+      /* 
+      后代选择器
+      <选择器> <选择器> 
+      逐级排除查询元素，先找到符合第一个选择的元素，再从匹配到的元素的后代查找第二个选择器的元素
+      */
+      #myTable td {
+        font-style: normal;
+      }
+      /* 
+      子代选择器
+      <选择器> > <选择器>
+      子代选择器与后代选择器类似，不过不同的是它只选择匹配元素的直接后代。
+      */
+      #myTable > tr {
+        color: white;
+        background: black;
+      }
+      /* 
+      相邻兄弟选择器
+      <选择器> + <选择器>
+      目标元素紧紧跟着第一个选择器的元素，且匹配第二个选择器
+       */
+      p + a {
+        padding: 4px;
+      }
+      /* 
+      普通兄弟匹配器
+      <第一个选择器> ~ <第二个选择>
+      目标元素位于匹配第一个选择器元素之后，且匹配第二个选择器，数量因此也不受限制
+       */
+      p ~ a {
+        border: thin black solid;
+        padding: 4px;
+      }
+
+      /* 
+      伪元素器
+      CSS 除了提供对元素的直接条件查找，还提供了一些列的条件查找可以直接进行更加精细的查找
+      ::first-line 匹配文本的首航
+      ::first-letter 匹配文本的首字母
+      :before 生成内容插入到文档的前面
+      :after 生成文档内容插入到匹配文档的后边
+       */
+      ::first-line {
+        font-weight: bold;
+      }
+
+      /* 
+      计数器
+      通过 counter-rest 创建计数器  
+      counter-rest ：名称 数量  数量默认为 0
+      通过 counter-increment 增量
+       */
+
+      body {
+        counter-reset: paraccount 10;
+      }
+      p::before {
+        counter-increment: paraccount;
+      }
+
+      section > div {
+        color: #202124;
+        font: 400 16px/24px Roboto, Noto Sans, Noto Sans JP, Noto Sans KR,
+          Noto Naskh Arabic, Noto Sans Thai, Noto Sans Hebrew, Noto Sans Bengali,
+          sans-serif;
+        text-size-adjust: 100%;
+        box-sizing: inherit;
+        padding: 0;
+        background-position: bottom right;
+        background-size: 50%;
+        background-color: #0f3a4b;
+        background: #0f3a4b;
+      }
+
+      section h1,h2,h3,p{
+        background: inherit;
+        color: white;
+        padding: 1em;
+      }
+
+    </style>
+  </head>
+  <body>
+    <section>
+      <div>
+        <h3>
+          jetpack compose
+        </h3>
+        <h1>Android`s modern toolkit for building native UI</h1>
+        <p>
+          Jetpack Compose simplifies and accelerates UI development on Android.
+          Quickly bring your app to life with less code, powerful tools, and
+          intuitive Kotlin APIs.
+        </p>
+        <a href="https://www.baidu.com">you can click here for detail </a>
+      </div>
+      <div>
+        <a href="http://apress.com">Visit the Apress website</a>
+        <p>I Like <span>apples</span> and oranges</p>
+        
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      p {
+        border: medium double black;
+      }
+      p.newClass {
+        background-color: gray;
+      }
+      table{
+          border:  medium solid black;
+      }
+      thead{
+          font-size: 1.5em;
+          background-color: grey;
+          text-align: center;
+      }
+      tbody{
+          text-align: center;
+      }
+      tr{
+          border: medium solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="textblock" dir="ltr" lang="en-US">
+      There are lots of different kinds of fruit -there are over 500 varieties
+      of
+      <span id="banana"> banana </span> alone. Byte The time we add the
+      countless type of <span id="apple">apple</span>,
+      <span id="orange">orange</span>,and other well-know fruit, we are faced
+      with thousands of choices.
+    </p>
+    <button id="add">addClass</button>
+    <button id="remove">removeClass</button>
+    <pre id="results"></pre>
+    <table>
+      <thead>
+        <tr>
+          <td>名称</td>
+          <td>说明</td>
+          <td>返回</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>type</td>
+          <td>事件的名称（如 mouserover）</td>
+          <td>字符串</td>
+        </tr>
+        <tr>
+          <td>target</td>
+          <td>事件指向的元素</td>
+          <td>HTMLElement</td>
+        </tr>
+        <tr>
+          <td>currentTarget</td>
+          <td>带有当前被触发事件监听器的元素</td>
+          <td>HTMLElement</td>
+        </tr>
+        <tr>
+          <td>eventPhase</td>
+          <td>事件生命周期的阶段</td>
+          <td>数值</td>
+        </tr>
+        <tr>
+          <td>bubbles</td>
+          <td>事件在文档中是否会冒泡传递</td>
+          <td>布尔值</td>
+        </tr>
+        <tr>
+          <td>cancleable</td>
+          <td>事件带有可撤销的默认行为则返回 true 否则 flase</td>
+          <td>布尔值</td>
+        </tr>
+        <tr>
+          <td>timeStamp</td>
+          <td>事件的创建时间，如果不可用则值为 0</td>
+          <td>数值</td>
+        </tr>
+        <tr>
+          <td>stopPropagetion()</td>
+          <td>在当前元素的事件监听器触发后终止事件的冒泡</td>
+          <td>void</td>
+        </tr>
+        <tr>
+          <td>stopImmediatePropagation()</td>
+          <td>立即终止时间在元素树中的流动。当前元素上未被触发的监听器会被忽略</td>
+          <td>void</td>
+        </tr>
+        <tr>
+          <td>preventDefault()</td>
+          <td>防止浏览器执行与事件关联的默认操作</td>
+          <td></td>void</td>
+        </tr>
+        <tr>
+          <td>defalutPrevented</td>
+          <td>如果调用过 preventDefault() 则返回 ture</td>
+          <td>布尔值</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      var results = document.getElementById("results");
+      var elem = document.getElementById("textblock");
+      results.innerHTML += "tag:" + elem.tagName + "\n";
+      results.innerHTML += "id:" + elem.id + "\n";
+      results.innerHTML += "dir:" + elem.dir + "\n";
+      results.innerHTML += "lang:" + elem.lang + "\n";
+      results.innerHTML += "hidden:" + elem.hidden + "\n";
+      results.innerHTML += "disabled:" + elem.disabled + "\n";
+      results.innerHTML += "lang: " + elem.getAttribute("lang") + "\n";
+      elem.setAttribute("lang", "en-UK");
+      results.innerHTML += "lang:" + elem.getAttribute("lang") + "\n";
+      var classList = elem.classList;
+      document.getElementById("add").onclick = function() {
+        classList.add("");
+      };
+      document.getElementById("remove").onclick = function() {
+        classList.remove("");
+      };
+    </script>
+  </body>
+</html>

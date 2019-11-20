@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      h1,
+      h2,
+      h3 {
+        background: grey;
+        color: white;
+      }
+      hgroup > h1 {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+      hgroup > h2 {
+        background: grey;
+        color: white;
+        font-size: 1em;
+      }
+      body > header *,
+      footer > * {
+        background: transparent;
+        color: black;
+      }
+      body > section,
+      body > section > section,
+      body > section > section > section {
+        margin-left: 10px;
+      }
+      body > header,
+      body > footer {
+        border: medium solid black;
+        padding-left: 5px;
+        margin: 10px 0 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <hgroup>
+        <h1>Thing I like</h1>
+        <h2>by Adam Freeman</h2>
+      </hgroup>
+      <nav>
+            <h1>Contents</h1>
+            <ul>
+              <li>
+                <a href="#firstText">first link</a>
+              </li>
+              <li>
+                <a href="#secondtText">second link</a>
+              </li>
+              <ul>
+                <li>
+                  <a href="#thirdText">third link</a>
+                </li>
+                <li>
+                  <a href="#fifthText">fifth link</a>
+                </li>
+              </ul>
+              <li>
+                <a href="#sixthText">sixth link</a>
+              </li>
+            </ul>
+          </nav>
+    </header>
+    <h1 id="firstText">
+      h1{font-size:2em;margin-before:0.67;margin-after:0.67em}
+    </h1>
+    <h2 id="secondText">
+      h2{font-size:1.5em:margin-before:0.83em;margin-after:1em}
+    </h2>
+    <h3 id="thirdText">
+      h3{font-size:1.17em;margin-before:1em;margin-after:1em}
+    </h3>
+    <h4 id="fourthText">
+      h4{font-size:1.33em;margin-before:1.33em;margin-after:1.33em}
+    </h4>
+    <h5 id="fifthText">
+      h5{font-szie:0.83em;margin-before:1.67em;margin-after:1.67em}
+    </h5>
+    <h6 id="sixthText">
+      h6{font-size:0.67em;margin-before:2.33em;margin-after:2.33em}
+    </h6>
+    <footer>
+      &#169;2011,Adam Freeman.<a href="http://apress.com">Visit Apress</a>
+    </footer>
+  </body>
+</html>

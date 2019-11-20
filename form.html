@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <fieldset>
+      <legend>Text Type</legend>
+      <!-- autocomplete 可以禁止浏览器自动填写缓存表单,其后可以单独对某个元素开启 -->
+      <form
+        method="POST"
+        target="_blank"
+        action="http://localhost:9090/untitled_war_exploded/form"
+        autocomplete="false"
+      >
+        <p>
+          <label for="name">Name:<input id="name" name="name"/></label>
+        </p>
+        <p>
+          <label for="city">City:<input id="City" name="city"/></label>
+        </p>
+        <p>
+          <label for="fave1">#1:<input id="fave1" name="fave1"/></label>
+        </p>
+        <p>
+          <label for="fave2">#2:<input id="fave2" name="fave2"/></label>
+        </p>
+        <p>
+          <label for="fave3">#3:<input id="fave3" name="fave3"/></label>
+        </p>
+        <button>Sumbit vote</button>
+      </form>
+    </fieldset>
+    ______________________________________________________________________________
+    <fieldset>
+      <legend>输入限制 Type 列表</legend>
+      <form enctype="multipart/form-data">
+        <p>
+          <label
+            >Input Text 类型属性：<input list="textTypeList" type="text"
+          /></label>
+        </p>
+        <p>
+          <label
+            >Type 文本类型列表：<input list="textTypeList" type="text"
+          /></label>
+        </p>
+        <p>
+          <label
+            >Number 类型<input type="number" min="0" step="1" max="100"
+          /></label>
+        </p>
+        <p>
+          <label
+            >range 类型 <input type="range" min="0" step="1" max="100"
+          /></label>
+        </p>
+        <p>
+          <label>chebox 类型<input type="checkbox" name="吃饭了吗"/></label>
+        </p>
+        <p>
+          <label
+            >复选框
+            <input name="radioButton" type="radio" />
+            <input name="radioButton" type="radio" />
+            <input name="radioButton" type="radio" />
+          </label>
+        </p>
+        <input hidden value="hidden" />
+        <p><input type="file" name="accessory" /></p>
+        <button>Sumbit Vote</button>
+      </form>
+    </fieldset>
+
+    <fieldset>
+      <legend>
+        其他类型 input type
+      </legend>
+      <form>
+        <select multiple>
+          <option value="multiple">如果设置了 multiple 就可以多选</option>
+          <option value="size">可以让限制 select 元素一直显示多少个选项</option>
+          <optgroup label="optgroup 可以对选项进行分组">
+            <option value="first">First</option>
+            <option value="second">Second</option>
+          </optgroup>
+        </select>
+        <p>
+          <textarea cols="30" rows="5" wrap="hard">
+Textarea 为多行输入文本 cols 可以限制每行的字数rows 可以限制行数而 warp 则控制插入换行符的方式</textarea
+          >
+        </p>
+      </form>
+    </fieldset>
+
+    <datalist id="contentTypeList">
+      <option value="checkbox">将输入限制限制为“是/否”</option>
+      <option value="color">只能输入颜色信息</option>
+      <option value="date">只能输入日期</option>
+      <option value="datetime">只能输入带时区信息的世界时</option>
+      <option value="email">只能输入规范的电子邮箱</option>
+      <option value="month">只能输入年月</option>
+      <option value="number">只能输入数字</option>
+      <option value="radiobutton">将输入限制在一组固定选项中进行选择</option>
+      <option value="range">只能输入指定范围内的数字</option>
+      <option value="tel">只能输入规范的电话号码</option>
+      <option value="url">只能输入完全限定的 URL</option>
+    </datalist>
+    <datalist id="textTypeList">
+      <option value="dirname">指定元素内容文字方向和名称</option>
+      <option value="list"
+        >指定文本框提供建议值的 datalist 元素，值为 datalist 的 id 值</option
+      >
+      <option value="maxlength"
+        >设定用户可以在文本中输入的字符的最大数目</option
+      >
+      <option value="pattern">设定一个用于输入验证的正则表达式</option>
+      <option value="placeholder">指定关于所需数据类型的提示</option>
+      <option value="readonly">用来将文本框设为只读阻止用户编辑其内容</option>
+      <option value="required">表示用户必须输入一个值，否则无法通过验证</option>
+      <option value="size">通过指定文本框中可见的字符数目设定其宽度</option>
+      <option value="value">设定文本框的初始值</option>
+    </datalist>
+  </body>
+</html>

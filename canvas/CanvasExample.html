@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500">
+      Your browser dosen't support the <code>canvas</code> Element
+    </canvas>
+    <script>
+      var canvas = document.getElementById("canvas").getContext("2d");
+      var offset = 10;
+      var size = 50;
+      var count = 5;
+      var smallSize = 20;
+      var fillColors = ["black", "grey", "lightgrey", "red", "blue"];
+      var strokeColors = [
+        "rgb(0,0,0)",
+        "rgb(100,100,100)",
+        "rgb(200,200,200)",
+        "rgb(255,0,0)",
+        "rgb(0,0,255)"
+      ];
+
+      for (let i = 0; i < count; i++) {
+        canvas.fillStyle = fillColors[i];
+        canvas.strokeStyle=strokeColors[i];
+        canvas.lineWidth = i;
+        canvas.fillRect(i * (offset + size) + offset, offset, size, size);
+        canvas.clearRect(
+          i * (offset + size) + 2.5 * offset,
+          2.5 * offset,
+          smallSize,
+          smallSize
+        );
+        canvas.strokeRect(
+          i * (offset + size) + offset,
+          2 * offset + size,
+          size,
+          size
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="components-demo">
+      <button-counter></button-counter>
+      <blog-post title="My journey with Vue"></blog-post>
+    </div>
+    <script>
+      Vue.component("button-counter", {
+        // 一个组件的 data 必须是一个函数，这样每个 vue 实例才可以维护一份被返回对象的独立的拷贝
+        data: function() {
+          return {
+            count: 0
+          };
+        },
+        template:
+          '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+      });
+      new Vue({ el: "#components-demo" });
+      Vue.component("blog-post", {
+        props: ["title"],
+        template: "<h3>{{ title }}</h3>"
+      });
+    </script>
+  </body>
+</html>

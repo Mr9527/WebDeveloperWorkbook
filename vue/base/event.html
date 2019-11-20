@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>事件处理</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cn.vuejs.org/css/page.css"
+    />
+  </head>
+  <body>
+    <div id="app" v-on:click="parentClick">
+      <button v-on:click="wran('Form cannot be submitted yet', $event)">
+        Submit
+      </button>
+      <pre>
+        <code class="hljs html">
+          <span class="hljs-comment">&lt;!-- 阻止单击事件继续传播 --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">v-on:click.stop</span>=<span class="hljs-string">"doThat"</span>&gt;</span>               
+          <span class="hljs-comment">&lt;!-- 提交事件不再重载页面 --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">v-on:submit.prevent</span>=<span class="hljs-string">"doThat"</span>&gt;</span>               
+          <span class="hljs-comment">&lt;!-- 修饰符可以串联 --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">v-on:click.stop.prevent</span>=<span class="hljs-string">"doThat"</span>&gt;</span>               
+          <span class="hljs-comment">&lt;!-- 内部触发事件现在此处理，然后再交由内部元素处理 --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">v-on:click.capture</span>=<span class="hljs-string">"doThat"</span>&gt;</span>     
+            <span class="hljs-comment">&lt;!-- 只要当 event.target 是当前元素才触发该函数 --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">v-on:click.self</span>=<span class="hljs-string">"doThat"</span>&gt;</span>            
+        </code>
+     </pre>
+      <p>
+        除此之外还有按键修饰符、系统修饰符鼠标修饰符来快捷的使得HTML能够监听事件
+      </p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            rawHtml: "ho"
+          };
+        },
+        methods: {
+          wran: function(message, event) {
+            if (event) {
+              console.log(event);
+            }
+            console.log("child reveice event ");
+            alert(message);
+          },
+          parentClick: function() {
+            console.log("parent reveice event ");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

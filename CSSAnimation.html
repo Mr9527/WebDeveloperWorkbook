@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      p {
+        padding: 5px;
+        border: medium double black;
+        background-color: lightgray;
+        font-family: sans-serif;
+      }
+      #london {
+        font-size: large;
+        border: medium solid black;
+        transition-delay: 100ms;
+        transition-duration: 500ms; /* 一开始布局的时候浏览器不会使用 transition 。这意味浏览器会直接加载 #london 样式，之后才会通过过度来应用新样式 */
+        transition-timing-function: ease-out;
+      }
+      #london:hover {
+        font-size: x-large;
+        border: medium solid white;
+        background-color: green;
+        color: white;
+        padding: 4px;
+        transition-delay: 100ms;
+        transition-property: background-color, color, padding, font-size, border; /* 如果不指定 property 属性则所有的属性都会在整个持续时间内逐渐应用过度 */
+        transition-duration: 500ms;
+        transition-timing-function: ease-in;
+      }
+      #apples {
+        font-size: large;
+        border: medium solid black;
+      }
+      div {
+        margin: 30px;
+        width: 200px;
+        height: 100px;
+        background-color: lightblue;
+        /* Rotate div */
+        transform: rotate(9deg);
+        -ms-transform: rotate(9deg); /* Internet Explorer */
+        -moz-transform: rotate(9deg); /* Firefox */
+        -webkit-transform: rotate(9deg); /* Safari 和 Chrome */
+        -o-transform: rotate(9deg); /* Opera */
+      }
+      #apples:hover,
+      #known:hover {
+        animation: anim 500ms 1;
+        animation-direction: alternate;
+      }
+
+      @keyframes anim {
+        from {
+          font-size: xx-small;
+          background-color: red;
+        }
+        50% {
+          font-size: small;
+          background-color: yellow;
+        }
+        to {
+          font-size: x-large;
+          border: medium solid white;
+          background-color: greeen;
+          color: white;
+          padding: 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p id="text">
+      There are lots of different kinds of fruit - there are over 500 varieties
+      of banna alone. By the time we add the countless types of
+      apples,oranges,and other well-known fruit,we are faced with thousands of
+      choices. One of the most interesting aspects of fruit is the variety
+      available in each country.I live near <span id="london">London</span>, in
+      an area which is <span id="known">known</span> for its
+      <span id="apples">apples</span>.
+    </p>
+    <div></div>
+  </body>
+</html>

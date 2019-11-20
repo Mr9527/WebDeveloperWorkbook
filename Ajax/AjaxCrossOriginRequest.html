@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <!-- 默认情况下，浏览器限制脚本只能在它们所属文档的来源内生成 Ajax 请求。你应该还记得，来源由 URL中的协议、主机名和端口号组成。这就意味着当我从 http://titan 载入一个文档后，
+    文档内含的脚本通常无法生成对 http://titan:8080 的七牛，因为第二个 URL 的端口号是不同的，所以处于文档来源之外。从一个来源到另一个来源的 Ajax 请求被称为跨域请求
+    这一策略的目的是降低跨站脚本攻击的风险，即诱导浏览器或用户执行恶意脚本。
+    但是这种策略一刀切的静止了跨域请求。
+ -->
+  <body>
+    <button id="button">request</button>
+    <script>
+      var request;
+      document.getElementById("button").onclick = buttonPress;
+      function buttonPress(e) {
+        request = new XMLHttpRequest();
+        request.onreadystatechange = handleResponse;
+        request.open(
+          "POST",
+          "http://127.0.0.1:9090/untitled_war_exploded/from"
+        );
+        try {
+          request.send();
+        } catch (error) {}
+      }
+    </script>
+  </body>
+</html>

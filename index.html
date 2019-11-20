@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen AND (max-width: 500px;)">
+      p{
+        color: red;
+      }
+    </style>
+    <style media="screen">
+    p{
+      color: blue;
+    }
+    </style>
+</head>
+<body>
+
+    
+<script>
+function diff(arr1, arr2) {
+  var newArr = [];
+  var totalArray=arr1.concat(arr2);
+  var indexArray=[];
+  for(var index=0;index<totalArray.length;index++){
+   var element= totalArray[index];
+   var matchIndex= newArr.indexOf(element);
+    if(matchIndex==-1){
+      newArr.push(element);        
+    } else {
+     indexArray.push(matchIndex);
+    }
+  }
+  console.log('数据：');
+  console.log(indexArray);
+  console.log(newArr);
+  for (var i = 0; i < indexArray.length; i++) {
+      newArr=newArr.splice(indexArray[i],1);
+    }
+  return newArr;
+}
+var toggleHidden=function () {
+    var element=document.getElementById("toggle");
+    if(element.hasAttribute("hidden")){
+        element.removeAttribute("hidden")
+    }else{
+        element.setAttribute("hidden","hidden")
+    }
+  }
+// setTimeout(diff,1000,[1, 2, 3, 5], [1, 2, 3, 4, 5])
+// var p1 = new Promise(function (resolve, reject) {
+//   resolve('成功');
+// });
+// p1.then(console.log, console.error);
+// // "成功"
+
+// var p2 = new Promise(function (resolve, reject) {
+//   reject(new Error('失败'));
+// });
+// p2.then(console.log, console.error);
+
+// var preloadImage = function (path) {
+//   return new Promise(function (resolve, reject) {
+//     var image = new Image();
+//     image.onload  = resolve;
+//     image.onerror = reject;
+//     image.src = path;
+//   });
+// };
+//    preloadImage('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1571811201666&di=554e282497f517f6dfc35679d8a41657&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201601%2F02%2F221223gb9tbqdlrbzq6zq6.jpg')
+//    .then(function(e){
+//      document.body.append(e.target);
+//    })
+//    .then(function(){
+//      console.log('图片加载成功')
+//    });
+
+
+       </script>
+<p contenteditable="true" id="toggle">this is edit content</p>
+<button onclick="toggleHidden()">switch top text</button>
+</body>
+
+</html>

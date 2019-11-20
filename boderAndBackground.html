@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      p,
+      textarea {
+        /*    border-width: 1px;
+      border-style: solid;
+      border-color: red; */
+        /* 可以简写为 border 宽度 样式 颜色 */
+        /*  border: medium solid black; */
+        /* 
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; */
+
+        /* 同样圆角也可以简写4个 
+        border-radius:20px/15px
+        border-radius:50% 20px 25
+        */
+        /*  border-radius: 5px; */
+
+        border: medium solid black;
+        background: lightgray;
+        background-image: url(image/timg.jpg);
+        background-size: 40px 40px; /* size 除了指定宽度和高度外还可以设置为百分比与预设值    */
+        background-repeat: no-repeat;
+        background-position: 30px 10px; /* positon 也可以通过 top left   top right    right bottom 这样去直接控制 */
+        background-attachment: local;
+
+        /* background 同样也可以简写 简写顺序:
+        color position size repeat origin clip attachment image */
+      }
+      #first {
+        border-radius: 20px/15px;
+      }
+      #second {
+        border-radius: 50% 20px 25% 5em/25% 15px 40px 55%;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Test CSS Border style</p>
+    <input list="borderList" />
+    <p id="first">
+      There are lots of different kinds of fruit - there are over 500 varieties
+      of banana alone. By the time we add the countless types of apples,oranges,
+      and other well-known fruit,we are faced with thousands of choices
+    </p>
+    <p id="second">
+      There are lots of different kinds of fruit - there are over 500 varieties
+      of banana alone. By the time we add the countless types of apples,oranges,
+      and other well-known fruit,we are faced with thousands of choices
+    </p>
+    <textarea>
+            There are lots of different kinds of fruit - there are over 500 varieties
+            of banana alone. By the time we add the countless types of apples,oranges,
+            and other well-known fruit,we are faced with thousands of choices
+          </textarea
+    >
+    <img src="image/timg.jpg" />
+
+    <datalist id="borderList">
+      <option value="none">没有边框</option>
+      <option value="dashed">破折线式边框</option>
+      <option value="dotted">圆点线式边框</option>
+      <option value="double">双线式边框</option>
+      <option value="groove">槽线式边框</option>
+      <option value="inset">使元素内容具有内嵌效果的边框</option>
+      <option value="outset">使元素内容具有外凸效果的边框</option>
+      <option value="ridge">脊线边框</option>
+      <option value="soild">实线边框</option>
+    </datalist>
+
+    <datalist id="borderSizeList">
+      <option value="thin">细的、瘦的</option>
+      <option value="medium">中间的</option>
+      <option value="thick">粗的</option>
+    </datalist>
+
+    <datalist id="backgroundList">
+      <option value="background-color">背景颜色，总是显示在背景图像下边</option>
+      <option value="background-image"
+        >背景图像，如果指定一个以上的图像，则后面的图像绘制在前面的图像的下面</option
+      >
+      <option value="background-repeat">设置图像的重复样式</option>
+      <option value="background-size">设置背景图像的尺寸</option>
+      <option value="background-positon">设置背景图像的位置</option>
+      <option value="background-attachment"
+        >设置元素中的图像是否固定或随页面一起滚动</option
+      >
+      <option value="background-clip">设置背景图像的裁剪方式</option>
+      <option value="bakcground-origin">设置背景图像绘制的起始位置</option>
+      <option value="background">简写属性</option>
+    </datalist>
+
+    <datalist id="backgroundSizeList">
+      <option value="contain"
+        >等比例缩放图像，使其宽度、高度重较大者与容器横向和纵向重合，背景图像始终包含在容器内</option
+      >
+      <option value="cover"
+        >等比例缩放图像，使图像至少覆盖容器，有可能超出容器</option
+      >
+      <option value="auto">默认值，图像以本身尺寸完全显示</option>
+    </datalist>
+  </body>
+</html>

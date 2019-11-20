@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue 状态维护</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      p {
+        font-size: larger;
+        font: ;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        Vue
+        将被侦听的数组的变异方法进行了包装，使得它们也将会触发视图更新。这些被包裹过的方法包括：
+      </p>
+      <ul>
+        <li v-for="item in arrayAttributes" v-bind:key="item.id">
+          {{item.name}}
+        </li>
+      </ul>
+      <button @click="addArray">add</button>
+      <button @click="popArray">pop</button>
+
+      <p>
+        但当你直接利用索引直接设置一个数组项的时候，Vue
+        并不能检测到这种变动，这时候你需要使用
+        <span>Vue.set()</span>
+        方法来修改，通过这种方法也将在响应式系统内触发状态更新
+      </p>
+      <input type="number" v-model="index" placeholder="index" />
+      <input type="text" v-model="value" placeholder="value" />
+      <button @click="changedArrayItem">sure</button>
+
+      <p>
+        对象的添加与删除也是无法检测的。但是也可以使用
+        <span>Vue.set(object,propertyName,value)</span>
+        方法向嵌套对象添加响应式属性。
+      </p>
+      <p>{{otherInfo.value}}</p>
+      <input type="text" v-model="otherInfo.text" />
+      <button @click="addOtherValue">添加一个额外的属性</button>
+      <p>
+        除了使用 Vue 的全局 set 方法外，你也可以使用实例的 $set 方法，它只是
+        Vue.set 的别名
+      </p>
+      <p>
+        如果你想对已有对象赋值多个属性，比如使用 <span>Object.assign()</span> 或
+        <span>_.extend()</span
+        >。但是如果直接使用它们添加的新的属性并不会触发更新。这种情况下，你应该用原来对象月要混合进去的对象的属性一起创建一个新的对象
+      </p>
+      <p>你不应该这样</p>
+      <code>
+        Object.assign(vm.userProfile,{ age:27, favoriteColor:'Vue Green' })
+      </code>
+      <p>而应该将它们混合为一个新对象并赋值</p>
+      <code>
+        vm.userProfile=Object.assign({},vm.userProfile,{ age:27,
+        favoriteColor:'Vue Green' })
+      </code>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          arrayAttributes: [
+            { id: 1, name: "push" },
+            { id: 2, name: "pop" },
+            { id: 3, name: "shift" },
+            { id: 4, name: "unshift" },
+            { id: 5, name: "splice" },
+            { id: 6, name: "sort" },
+            { id: 7, name: "reverse" }
+          ],
+          index: 0,
+          value: "",
+          otherInfo: {
+            text: ""
+          }
+        },
+        methods: {
+          addArray: function() {
+            var info = { id: this.arrayAttributes.length + 1, name: "addInfo" };
+            this.arrayAttributes.push(info);
+          },
+          popArray: function() {
+            this.arrayAttributes.pop();
+          },
+          changedArrayItem: function() {
+            if (this.index >= this.arrayAttributes.length) {
+              alert("查无此人");
+              return;
+            }
+            Vue.set(this.arrayAttributes, this.index, {
+              id: this.index + 1,
+              name: this.value
+            });
+          },
+          addOtherValue: function() {
+            Vue.set(this.otherInfo, "value", this.otherInfo.text);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

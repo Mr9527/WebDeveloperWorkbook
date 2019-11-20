@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: "myFont";
+        font-style: nromal;
+        font-weight: normal;
+        src: url("http://titan/listings/myFont.woff");
+      }
+      #fruittext {
+        width: 400px;
+        margin: 5px;
+        padding: 5px;
+        border: medium double black;
+        background-color: lightgrey;
+        text-align: justify; /* 文字方向 */
+        text-justify: inter-word; /* text-align 设置为 justify 时才有效，设定文本的整体格式，根据语言来 */
+        white-space: normal; /* 文字间的空格的处理方式 */
+        direction: ltr; /* 文字方向 */
+        word-spacing: 1px; /* 单词间距 */
+        letter-spacing: 2px; /* 字母间距 */
+        line-height: 25px; /* 行高 */
+        text-shadow: 5px 5px 20px grey;
+        font-family: myFont, Courier, monospace; /* serif sans-serif cursive fantasy monospace 这几种是通用字体 */
+      }
+    </style>
+  </head>
+  <body>
+    <p id="fruittext">
+      There are lots of different kinds of fruit - there are over 500 varieties
+      of banna alone. By the time we add the countless types of
+      apples,oranges,and other well-known fruit,we are faced with thousands of
+      choices. One of the most interesting aspects of fruit is the variety
+      available in each country.I live near London, in an area which is known
+      for its apples.
+    </p>
+    <button>Start</button>
+    <button>End</button>
+    <button>Left</button>
+    <button>Right</button>
+    <button>Justify</button>
+    <button>Center</button>
+    <script>
+      var buttons = document.getElementsByTagName("BUTTON");
+      for (let i = 0; i < buttons.length; i++) {
+        const element = buttons[i];
+        element.onclick = function(e) {
+          document.getElementById("fruittext").style.textAlign =
+            e.target.innerHTML;
+        };
+      }
+    </script>
+  </body>
+</html>

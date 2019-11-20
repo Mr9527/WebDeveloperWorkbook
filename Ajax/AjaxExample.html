@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="output"></p>
+    <button id="button">Post</button>
+    <script>
+      var request;
+      document.getElementById("button").onclick = buttonPress;
+      function buttonPress(e) {
+        request = new XMLHttpRequest();
+        request.onreadystatechange = handleResponse;
+        request.open(
+          "POST",
+          "http://127.0.0.1:9090/untitled_war_exploded/form"
+        );
+        request.setRequestHeader("Cache-Control","no-cache");//设置指定的标头
+        try {
+          request.send();
+        } catch (error) {}
+      }
+      function handleResponse(e) {
+        var target = e.target;
+        XMLHttpRequest.UNSENT; //已经创建 XMLHttpRequest 对象
+        XMLHttpRequest.OPENED; //已调用 open 方法
+        XMLHttpRequest.HEADERS_RECEIVED; //已收到服务器响应的标头
+        XMLHttpRequest.LOADING; //已经收到服务器响应
+        XMLHttpRequest.DONE; //响应完成或已经失败
+        request.getAllResponseHeaders(); // 获取所有的响应头
+        request.getResponseHeader("Content-type");// 获取单独的响应头
+        if (target.readyState == XMLHttpRequest.DONE && target.status == 200) {
+          document.getElementById("output").innerHTML = target.responseText;
+        } else {
+          alert(target.status);
+        }
+      }
+    </script>
+  </body>
+</html>
