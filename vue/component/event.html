@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cn.vuejs.org/css/page.css"
+    />
+  </head>
+  <body>
+    <div class="content" id="app">
+      <p class="tip">
+        <code>v-model</code>
+        指令会在在表单
+        <code>&lt;input&gt;</code>
+        、
+        <code>&lt;textarea&gt;</code>
+        、
+        <code>&lt;select&gt;</code>
+        元素上创建双向绑定。它负责监听用户的输入事件以及更新数据，并对不同的控件类型和场景进行自动处理
+      </p>
+      <ul>
+        <li>
+          text 和 textarea 元素使用 <code>value</code> 属性和
+          <code>input</code>事件
+        </li>
+        <li>
+          checkbox 和 radio 使用
+          <code>checked</code>属性和<code>changed</code>事件
+        </li>
+        <li>
+          select 则使用 <code>value</code>作为 porp 并将
+          <code>changed</code>作为事件
+        </li>
+      </ul>
+      <p>
+        如果我们想要自定义<code>v-model</code>所监听的事件和属性，<code>Vue</code>也是支持的,我们可以通过组件的<code
+          >model</code
+        >
+        指定新的所需要绑定的属性和更新事件
+      </p>
+      <pre>
+          <code class="hljs html">
+            Vue.component(<span class="hljs-string">'base-checkbox'</span> ,{
+               model:{
+                   prop: <span class="hljs-string">'checked''</span>,
+                   event: <span class="hljs-string">'chaneg'</span>
+               },
+               props:{
+                   checked: <span class="hljs-string">'Boolean''</span>,
+               },
+               template:<span class="hljs-string">'
+                <</span><span class="hljs-string">input</span>
+                <span class="hljs-string">type="checked"</span>
+                <span class="hljs-string">v-bind:checked="checked"</span>
+                <span class="hljs-string">v-bind:chaneg="$emit('chaeng',$event.target.checked)"</span>
+                <span class="hljs-string">>
+                '</span>
+            })
+
+          </code>
+      </pre>
+      <base-checkbox v-model="lovingVue"> </base-checkbox>
+      <p>
+        除此之外，我们也可以通过<code>v-on</code>的<code>.native</code>修饰符来直接监听原生事件
+      </p>
+      <pre>
+        <code class="htjs html">
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-on:focus.native</span>=<span class="hljs-string">"onFocus"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>&gt;</span>               
+        </code>
+    </pre>
+      <base-input v-on:focus.native="onFocus"></base-input>
+      <label>{{inputFocus}}</label>
+      <mvvm-input></mvvm-input>
+    </div>
+    <script>
+      Vue.component("base-checkbox", {
+        model: {
+          prop: "checked",
+          event: "change"
+        },
+        props: {
+          checked: Boolean
+        },
+        template: `
+          <div>
+              <input
+               type="checkbox"
+              v-bind:checked="checked"
+              v-on:change="$emit('change', $event.target.checked)">
+          <label>{{checked}}</label>
+          </div>
+        `
+      });
+      Vue.component("base-input", {
+        props: {
+          ggg: {
+            type: String,
+            default: "100"
+          }
+        },
+        template: `
+              <input type="text"  @input="$emit('update:value',$event.target.value)"></input>
+              `
+      });
+      Vue.component("mvvm-input", {
+        data() {
+          return {
+            inputInfo: {
+              name: ""
+            }
+          };
+        },
+        template: `
+               <div>
+                 <base-input
+                  v-bind:value.sync="inputInfo.name"></base-input>
+                <label>{{inputInfo.name}}</label>
+                </div>
+                `
+      });
+
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            lovingVue: true,
+            inputFocus: ""
+          };
+        },
+        methods: {
+          onFocus: function(event) {
+            this.inputFocus = event.returnValue;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
