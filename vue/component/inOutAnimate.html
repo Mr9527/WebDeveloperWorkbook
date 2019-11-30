@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cn.vuejs.org/css/page.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="//cdn.jsdelivr.net/npm/velocity-animate@2.0/velocity.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/2.0.3/velocity.min.js"></script>
+    <style>
+      /* 可以设置不同的进入和离开动画 */
+      /* 设置持续时间和动画函数 */
+      .slide-fade-enter-active {
+        transition: all 0.3s ease;
+      }
+      .slide-fade-leave-active {
+        transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+      }
+      .slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+        transform: translateX(10px);
+        opacity: 0;
+      }
+      /*  css 动画 */
+      .bounce-enter-active {
+        animation: bounce-in 0.5s;
+      }
+      .bounce-leave-active {
+        animation: bounce-in 0.5s reverse;
+      }
+
+      @keyframes bounce-in {
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: sclae(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content" id="example-1">
+      <h3>组件/元素的过渡</h3>
+      <button @click="show = !show">
+        Changed status
+      </button>
+
+      <transition name="slide-fade">
+        <p v-if="show" class="tip">
+          当插入和删除包含在<code>Transition</code> 组件中的元素时，Vue
+          会做一下处理
+          <br />
+          1. 自动嗅探目标元素是否应用了 CSS
+          过渡和动画，如果是，在恰当的时机添加/删除 css 类名
+          <br />
+          2. 如果过渡组件提供了 JavaScript
+          钩子函数，这些钩子函数将在恰当的时机被调用。
+          <br />
+          3. 如果前两者都没有检测到，DOM 的插入/删除 在下一帧会立即执行。
+        </p>
+      </transition>
+
+      <transition name="bounce">
+        <div v-if="show">
+          <p class="tip">
+            在进入/离开的过程中，会有 6 个 clas 切换
+            <br />
+            <br />
+            1.
+            <code>v-enter</code>
+            定义进入过渡的开始状态。在元素插入之前生效，在元素插入之后的下一帧移除。
+            <br />
+            <br />
+            2.
+            <code>v-enter-active</code>
+            定义进入过渡生效时的状态。在整个进入过渡的阶段中应用，在元素插入之前生效，在过渡、动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。
+            <br />
+            <br />
+            3.
+            <code>v-enter-to</code>
+            定义进入过渡的结束状态。在元素被插入后下一帧生效（与此同时
+            <code>v-enter</code> 被移除），动画/过渡结束之后被移除
+            <br />
+            <br />
+            离开相对应的也有三种状态，分别是
+            <code>v-leave</code>、<code>v-leave-active</code>以及
+            <code>v-leave-to</code>
+            它们与进入的三种状态一一对应，这里就不再赘述了
+            <br />
+            <br />
+          </p>
+          <img src="https://cn.vuejs.org/images/transition.png" />
+        </div>
+      </transition>
+      <h3>自定义过渡的类名</h3>
+      <button @click="classShow = !classShow">
+        Toggle render
+      </button>
+      <p>
+        我们可以通过以下特性来自定义过渡类名，他们的优先级高于普通的类名，这对于
+        Vue 的过渡系统和其他第三方 CSS 动画库，如
+        <code>Animate.css</code>结合十分有用
+      </p>
+      <div></div>
+      <transition
+        :duration="1000"
+        name="custom-classes-transition"
+        enter-active-class="animated tada"
+        leave-active-class="animated bounceOutRight"
+      >
+        <div v-if="classShow">
+          <ul>
+            <li><code>enter-class</code></li>
+            <li><code>enter-active-class</code></li>
+            <li><code>enter-to-class</code></li>
+            <li><code>enter-to-class</code></li>
+            <li><code>enter-active-class</code></li>
+            <li><code>enter-active-class</code></li>
+            <li><code>enter-to-class</code></li>
+          </ul>
+        </div>
+      </transition>
+      <h3>JavaScript 钩子函数</h3>
+      <button @click="methodShow = !methodShow">
+        chagned
+      </button>
+      <transition
+        v-on:before-enter="beforeEnter"
+        v-on:enter="enter"
+        v-on:leave="leave"
+        v-bind:css="false"
+      >
+        <p v-if="methodShow" id="method_control_anim_content">
+          在属性声明中声明 JavaScript
+          钩子函数，这些钩子函数将在恰当的时机被调用。
+        </p>
+      </transition>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-1",
+        data: {
+          show: true,
+          classShow: true,
+          methodShow: true
+        },
+        methods: {
+          beforeEnter: function(e) {
+            //..
+            var node = document.getElementById("method_control_anim_content");
+            node.style.opacity = 0;
+            node.style.transformOrigin = "left";
+          },
+          enter: function(el, done) {
+            Velocity(el, { opacity: 1, fontSize: "1.4em" }, { duration: 300 });
+            Velocity(el, { fontSize: "1em" }, { complete: done });
+          },
+          leave: function(el, done) {
+            Velocity(
+              el,
+              { translateX: "15px", rotateZ: "50deg" },
+              { duration: 600 }
+            );
+            Velocity(el, { rotateZ: "100deg" }, { loop: 2 });
+            Velocity(
+              el,
+              {
+                rotateZ: "45deg",
+                translateX: "30px",
+                translateY: "30px",
+                opacity: 0
+              },
+              { complete: done }
+            );
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
