@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cn.vuejs.org/css/page.css"
+    />
+  </head>
+  <body>
+    <div class="content" id="app">
+      <p>
+        Vue 提供了 <code>minxin</code> 来支持组件中的复用和组合功能。<code
+          >minxin</code
+        >
+        对象可以包含到任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进该组件本身的选项。
+        当遇到同名选项时，这些选项也会以恰当的方式。
+      </p>
+      <p>它们会遵循以下的合并方案</p>
+      <ul>
+        <li>数据对象:会在内部进行递归合并，并在发生冲突时以组件数据优先</li>
+        <li>
+          钩子函数：同名的钩子函数将合并为一个数组，它们都会被调用。且组件自身的钩子函数会最后调用
+        </li>
+        <li>
+          值对象冲突：在值为对象的情况下冲突，例如 <code>method</code>、<code
+            >components</code
+          >
+          等，组件和混入对象的会被合并成一个对象，并在有冲突的情况时以组件对象的值为准。
+        </li>
+      </ul>
+
+      <script>
+        var mixin = {
+          created: function() {
+            console.log("this is a mixin created method");
+          },
+          data: function() {
+            return {
+              childValue: "minxin data object"
+            };
+          },
+          methods: {
+            funminxin: function() {
+              console.log(" function mixin");
+            }
+          }
+        };
+        new Vue({
+          mixins: [mixin],
+          created: function() {
+            console.log("this is a component created function");
+          },
+          methods: {
+            funComponent: function() {
+              console.log("function components");
+            }
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>渲染函数</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cn.vuejs.org/css/page.css"
+    />
+  </head>
+  <body>
+    <div class="content" id="app">
+      <p class="tip">
+        在一些需要重复书写几面中，通过组件和模板并不是最好的选择，我们希望可以通过
+        JavaScript 来动态生成代码，为了应对这样的场景 Vue 提供了
+        <strong>渲染函数</strong>
+      </p>
+      <anchored-heading v-bind:level="1">
+        Hello
+      </anchored-heading>
+      <script>
+        var getChildrenTextContent = function(children) {
+          return children
+            .map(function(node) {
+              return node.children
+                ? getChildrenTextContent(node.children)
+                : node.text;
+            })
+            .join("");
+        };
+
+        Vue.component("anchored-heading", {
+          render: function(createElement) {
+            // 创建 kebab-case 风格的 ID
+            var headingId = getChildrenTextContent(this.$slots.default)
+              .toLowerCase()
+              .replace(/\W+/g, "-")
+              .replace(/(^-|-$)/g, "");
+
+            return createElement("h" + this.level, [
+              createElement(
+                "a",
+                {
+                  attrs: {
+                    name: headingId,
+                    href: "#" + headingId
+                  }
+                },
+                this.$slots.default
+              )
+            ]);
+          },
+          props: {
+            level: {
+              type: Number,
+              required: true
+            }
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>
