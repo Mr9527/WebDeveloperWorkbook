@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="jquery-3.5.1.js"></script>
+    <style>
+      div,
+      span,
+      p {
+        width: 140px;
+        height: 140px;
+        margin: 5px;
+        background: #aaa;
+        border: #000 1px solid;
+        float: left;
+        font-size: 17px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      div.mini {
+        width: 55px;
+        height: 55px;
+        background-color: #aaa;
+        font-size: 12px;
+      }
+      div.hide {
+        display: none;
+      }
+    </style>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // $("#one").css("background", "#bbffaa");
+        // $(".mini").css("background", "#bbffaa");
+        // $("div").css("background", "#bbffaa");
+        $("span,#two").css("background", "#bbffaa");
+        // Jquery 层次选择器 
+        // $("a b") 获取 a 元素里所有的 b （后代）元素
+        // $("a>b") 获取 a 元素下的 b 元素
+        // $("a+b") 获取紧跟着 a 元素后的 b 元素
+        // $("a~b") 获取 a 元素后面的所有 b 的同辈元素
+      });
+    </script>
+  </head>
+  <body>
+    <div class="one" id="one">
+      id one ，class one 的 div
+      <div class="mini">classmini</div>
+    </div>
+
+    <div class="one" id="two" title="test">
+      id two，class one ，title test 的 div
+      <div class="mini" title="other">classmini,title other</div>
+      <div class="mini" title="test">classmini,title test</div>
+    </div>
+
+    <div class="one">
+      <div class="mini">class mini</div>
+      <div class="mini">class mini</div>
+      <div class="mini">class mini</div>
+      <div class="mini"></div>
+    </div>
+
+    <div class="one">
+      <div class="mini">class mini</div>
+      <div class="mini">class mini</div>
+      <div class="mini">class mini</div>
+      <div class="mini" title="tesst">class mini，title tesst</div>
+    </div>
+
+    <div style="display: none;" class="none">
+      style 的 display 为 none 的 div
+    </div>
+
+    <div class="hide">class 为 "hide" 的 div</div>
+    <div>
+      包含 input 的 type 为 "hidden" 的 div
+
+      <input type="hidden" size="8" />
+    </div>
+    <span id="mover">正在执行动画的 span 元素</span>
+  </body>
+</html>

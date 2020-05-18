@@ -34,35 +34,69 @@
           等，组件和混入对象的会被合并成一个对象，并在有冲突的情况时以组件对象的值为准。
         </li>
       </ul>
-
-      <script>
-        var mixin = {
-          created: function() {
-            console.log("this is a mixin created method");
-          },
-          data: function() {
-            return {
-              childValue: "minxin data object"
-            };
-          },
-          methods: {
-            funminxin: function() {
-              console.log(" function mixin");
-            }
+      <pre>
+          <code class="hljs html">
+            var mixin = {
+        created: function() {
+          console.log("mixin function create lifecycle");
+        },
+        data: function() {
+          return {
+            language: "java、kotlin、javascript、go、sql",
+            scope: "fron end、back end、media、framwork"
+          };
+        }
+      };
+      new Vue({
+        mixins: [mixin],
+        data: function() {
+          return {
+            skill: "english、search、doc、design ",
+            language: "java"
+          };
+        },
+        created: function() {
+          console.log("this is a component created function");
+        },
+        methods: {
+          funComponent: function() {
+            console.log("function components");
           }
-        };
-        new Vue({
-          mixins: [mixin],
-          created: function() {
-            console.log("this is a component created function");
-          },
-          methods: {
-            funComponent: function() {
-              console.log("function components");
-            }
-          }
-        });
-      </script>
+        }
+      });
+          </code>
+      </pre>
     </div>
+    <script>
+      var mixin = {
+        created: function() {
+          console.log("mixin function create lifecycle");
+        },
+        data: function() {
+          return {
+            language: "java、kotlin、javascript、go、sql",
+            scope: "fron end、back end、media、framwork"
+          };
+        }
+      };
+      var vm = new Vue({
+        mixins: [mixin],
+        el: "#app",
+        data: function() {
+          return {
+            skill: "english、search、doc、design ",
+            language: "java"
+          };
+        },
+        created: function() {
+          console.log("this is a component created function");
+        },
+        methods: {
+          funComponent: function() {
+            console.log("function components");
+          }
+        }
+      });
+    </script>
   </body>
 </html>

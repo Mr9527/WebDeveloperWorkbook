@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>解构（Deconstruction）</title>
+  </head>
+  <body>
+    <script>
+      // ES6 允许按照一定模式，从数组中提取值，对变量进行赋值，这被称为解构（Destructuing）
+
+      const { log } = console;
+      log("将 console.log 解构赋值到 log 变量");
+
+      // 数组解构
+      let [a, b, c] = [1, 2, 3];
+      // 只要等号两边的模式相同，左边的变量就会被赋值。
+      let [foo, [[bar], baz]] = [123, [[2], 3]];
+      log(foo);
+      log(bar);
+      log(baz);
+
+      let [, , g] = ["1", "2", "3"];
+      log(g);
+
+      let [head, ...list] = [1, 2, 3, 4];
+      log("list的值为" + list);
+
+      // 如果解构不成功，那么值就为 undefined
+      let [x, y, z] = ["a"];
+      log(x);
+      log(y);
+      log(z);
+
+      // 等号左边的模式即使只匹配一部分等号右边的数组。这种情况下，解构依然可以成功。
+      let [f, s, d] = [1, 2, 3, 4];
+      log(f + "" + s + "" + d);
+      // 且只要数据结构具有 Ierator 接口，都可以次啊用数组形式的结构复制
+
+      function* fibs() {
+        let q = 0;
+        let w = 1;
+        while (true) {
+          yield q;
+          [q, w] = [w, q + w];
+        }
+      }
+      let [first, second, third, foruth, fifth, sixth] = fibs();
+      log(sixth);
+
+      // 指定解构的默认值
+      let [name, value = "none"] = ["c"];
+      log("姓名 " + name + " 职位 " + value);
+
+      // 如果默认值是一个表达值，那么它只有在用到的时候才会求值
+      function defalutValue() {
+        return "defalut";
+      }
+
+      let [company = defalutValue()] = ["huawei"];
+      log(company);
+
+      // 结构也可以应用于对象
+
+      let { age, sex } = { age: "18", sex: "男" };
+      log(age);
+
+      let { max, min } = { max: "100", min: "0" };
+      log("max：" + max + " min：" + min);
+      // 对象的解构复制机制，是先找到同名属性，然后再赋值对应的变量。真正被赋值的是后者，而不是前者。
+      // 此外函数也可以使用结构来接受和返回
+      function pack({g,h,l=1}) {
+        return { u: g, n: h+l };
+      }
+
+      let { u, n } = pack({g:1,h:2});
+      log(u+n)
+
+
+    </script>
+  </body>
+</html>

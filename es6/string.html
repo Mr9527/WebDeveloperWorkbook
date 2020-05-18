@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>字符串（String）</title>
+  </head>
+  <body>
+    <h3>字符串增强</h3>
+    <span id="text"></span>
+    <div id="list"></div>
+    <script>
+      // 字符串实现了 Ierator 接口，使其可以被遍历
+      const { log } = console;
+      for (let point of "text") {
+        log(point);
+      }
+      // 模板字符串能通过 ` 来标识，可以保留所有格式以及元素符号
+
+      let name = "`";
+      let node = document.getElementById("text");
+      node.innerHTML = `
+      模板字符串事增强版本的字符串,它使用 <b> ${name} </b> 来标识 
+      <p>
+      它既刻意当作普通字符串来使用，也可以用来定义多行字符串，
+      也可以再字符串中嵌入符号和变量 
+      </br>
+      下边我们就来展示一个实例,字符串模板解析 ${1 + 1 + 1 + "."}
+      `;
+
+
+      // 模板编译
+      let template = `
+<ul>
+  <% for(let i=0; i < data.supplies.length; i++) { %>
+    <li><%= data.supplies[i] %></li>
+  <% } %>
+</ul>
+`;
+
+      function compile(template) {
+        const evalExpr = /<%=(.+?)%>/g;
+        const expr = /<%([\s\S]+?)%>/g;
+
+        template = template
+          .replace(evalExpr, "`); \n  echo( $1 ); \n  echo(`")
+          .replace(expr, "`); \n $1 \n  echo(`");
+
+        template = "echo(`" + template + "`)";
+        let script =
+  `(function parse(data){
+    let output = "";
+
+    function echo(html){
+      output += html;
+    }
+
+    ${ template }
+
+    return output;
+  })`;
+        return script;
+      }
+
+      let parse = eval(compile(template));
+      document.getElementById("list").innerHTML = parse({
+        supplies: ["java", "javascript", "kotlin",'dart','C','C++','python']
+      });
+
+
+    
+    </script>
+  </body>
+</html>
